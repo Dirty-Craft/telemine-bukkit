@@ -63,7 +63,7 @@ lang.player_join_message: "{name} joined the server"
 
 feature.player_join_message_show_online_players_list: true
 feature.player_leave_message_show_online_players_list: true
-lang.online_players_list_message: "There are {count} of a max of {max_count} players online: {list}\nCurrent TPS: {tps}"
+lang.online_players_list_message: "There are {count} of a max of {max_count} players online: {list}"
 
 feature.player_leave_messages: true
 feature.player_leave_messages_chat_id:
@@ -75,7 +75,7 @@ lang.player_death_message: "{player_name} {death_message}"
 
 feature.advancement_made_messages: true
 feature.advancement_made_messages_chat_id:
-lang.advancement_made_message: "{player_name} has made the advancement {advancement_name}"
+lang.advancement_made_message: "{player_name} has made the advancement [{advancement_name}]"
 
 feature.monitor_command_executions: false
 feature.monitor_command_executions_chat_id:
