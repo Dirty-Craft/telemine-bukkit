@@ -1,0 +1,11 @@
+main: ${PACKAGE}.${NAME}
+name: ${NAME}
+version: "${VERSION}"
+api-version: "1.16"
+author: Parsa Shahmaleki
+description: Telemine can connect your server to your Telegram group
+commands:
+  tg:
+    description: Sends a message to Telegram
+    usage: /tg <message>
+permissions:
