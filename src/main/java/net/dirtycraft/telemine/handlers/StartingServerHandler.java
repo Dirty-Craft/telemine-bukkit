@@ -3,7 +3,11 @@ package net.dirtycraft.telemine.handlers;
 import net.dirtycraft.telemine.Configuration;
 
 public class StartingServerHandler extends Handler {
-    public static boolean ENABLED = Configuration.FEATURE_STARTING_SERVER_MESSAGE;
+    public static boolean isEnabled()
+    {
+        if (!Handler.isEnabled()) return false;
+        return Configuration.FEATURE_STARTING_SERVER_MESSAGE;
+    }
 
     public static void handle()
     {

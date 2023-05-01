@@ -6,10 +6,19 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 public class TgCommandHandler extends Handler implements CommandExecutor {
-    public static boolean ENABLED = Configuration.FEATURE_TG_SEND_MESSAGE_COMMAND;
+    public static boolean isEnabled()
+    {
+        if (!Handler.isEnabled()) return false;
+        return Configuration.FEATURE_TG_SEND_MESSAGE_COMMAND;
+    }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
+        if (!isEnabled()) {
+            sender.sendMessage("This feature is not enabled");
+            return false;
+        }
+
         new Thread(() -> {
             String playerName;
             String message = String.join(" ", args);

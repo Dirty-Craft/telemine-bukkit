@@ -8,4 +8,10 @@ commands:
   tg:
     description: Sends a message to Telegram
     usage: /tg <message>
+  telemine-reload-configuration:
+    description: Reloads the Telemine configuration from config file
+    usage: /telemine-reload-configuration
 permissions:
+  telemine.reload-configuration:
+    description: Gives the ability to use command /telemine-reload-configuration
+    default: false

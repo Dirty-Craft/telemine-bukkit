@@ -4,7 +4,11 @@ import net.dirtycraft.telemine.Configuration;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerJoinHandler extends Handler {
-    public static boolean ENABLED = Configuration.FEATURE_PLAYER_JOIN_MESSAGES;
+    public static boolean isEnabled()
+    {
+        if (!Handler.isEnabled()) return false;
+        return Configuration.FEATURE_PLAYER_JOIN_MESSAGES;
+    }
 
     public static void handle(PlayerJoinEvent event)
     {

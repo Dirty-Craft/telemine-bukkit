@@ -81,12 +81,18 @@ public class Configuration {
 
     public static void load()
     {
-        file = new File(Bukkit.getServer().getPluginManager().getPlugin(Telemine.MOD_ID).getDataFolder(), "config.yml");
-        configs = YamlConfiguration.loadConfiguration(file);
-        assignConfigs();
+        load(false);
     }
 
-    private static void assignConfigs() {
+    public static void load(boolean isReload)
+    {
+        file = new File(Bukkit.getServer().getPluginManager().getPlugin(Telemine.MOD_ID).getDataFolder(), "config.yml");
+        configs = YamlConfiguration.loadConfiguration(file);
+        assignConfigs(isReload);
+    }
+
+
+    private static void assignConfigs(boolean isReload) {
         ENABLED = configs.getBoolean("enabled", ENABLED);
 
         BOT_TOKEN = configs.getString("telegram.bot_token", BOT_TOKEN);
@@ -142,6 +148,24 @@ public class Configuration {
         LANG_GENERAL_MESSAGE_HEADER = configs.getString("lang.general_message_header", LANG_GENERAL_MESSAGE_HEADER);
         LANG_GENERAL_MESSAGE_FOOTER = configs.getString("lang.general_message_footer", LANG_GENERAL_MESSAGE_FOOTER);
 
-        Telemine.LOGGER.info("Configs have been loaded successfully");
+        if (!ENABLED) {
+            Telemine.LOGGER.warn("The mod is disabled");
+        } else if (BOT_TOKEN == "") {
+            Telemine.LOGGER.warn("The Telegram bot token is not set in the configs");
+        } else if (CHAT_ID == "") {
+            Telemine.LOGGER.warn("The Telegram chat ID is not set in the configs");
+        } else {
+            Telemine.API.enabled = ENABLED;
+            Telemine.API.botToken = BOT_TOKEN;
+            Telemine.API.groupID = CHAT_ID;
+            Telemine.API.proxyHost = PROXY_HOST;
+            Telemine.API.proxyPort = PROXY_PORT;
+        }
+
+        if (isReload) {
+            Telemine.LOGGER.info("Configs have been re-loaded successfully");
+        } else {
+            Telemine.LOGGER.info("Configs have been loaded successfully");
+        }
     }
 }

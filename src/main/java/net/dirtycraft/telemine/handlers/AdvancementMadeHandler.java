@@ -5,7 +5,11 @@ import net.dirtycraft.telemine.Telemine;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 
 public class AdvancementMadeHandler extends Handler {
-    public static boolean ENABLED = Configuration.FEATURE_ADVANCEMENT_MADE_MESSAGES;
+    public static boolean isEnabled()
+    {
+        if (!Handler.isEnabled()) return false;
+        return Configuration.FEATURE_ADVANCEMENT_MADE_MESSAGES;
+    }
 
     public static void handle(PlayerAdvancementDoneEvent event)
     {

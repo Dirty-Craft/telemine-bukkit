@@ -4,7 +4,11 @@ import net.dirtycraft.telemine.Configuration;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 public class VillagerDeathHandler extends Handler {
-    public static boolean ENABLED = Configuration.FEATURE_VILLAGER_DEATH_MESSAGE;
+    public static boolean isEnabled()
+    {
+        if (!Handler.isEnabled()) return false;
+        return Configuration.FEATURE_VILLAGER_DEATH_MESSAGE;
+    }
 
     public static void handle(EntityDeathEvent event)
     {

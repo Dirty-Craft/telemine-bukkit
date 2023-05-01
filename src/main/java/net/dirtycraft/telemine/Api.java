@@ -17,6 +17,8 @@ public class Api {
     public String proxyHost = null;
     public String proxyPort = null;
 
+    public int failedAttempts = 0;
+
     public boolean stringIsEmpty(String value)
     {
         return value == null || value.trim().isEmpty();
@@ -77,7 +79,15 @@ public class Api {
 
     public String call(String uri, String method, String payload)
     {
-        if (!isValid()) return "ERROR";
+        if (failedAttempts > 10) {
+            Telemine.LOGGER.error("Refused to make API call: too many failed attempts");
+            return "ERROR";
+        }
+
+        if (!isValid()) {
+            failedAttempts++;
+            return "ERROR";
+        }
 
         HttpURLConnection connection = null;
         try {
@@ -126,9 +136,11 @@ public class Api {
                 response.append('\r');
             }
             rd.close();
+            failedAttempts--;
             return response.toString();
         } catch (Exception e) {
             e.printStackTrace();
+            failedAttempts++;
             return "ERROR";
         } finally {
             if (connection != null) {

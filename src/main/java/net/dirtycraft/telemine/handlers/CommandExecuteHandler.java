@@ -5,7 +5,11 @@ import net.dirtycraft.telemine.Telemine;
 import org.bukkit.event.server.ServerCommandEvent;
 
 public class CommandExecuteHandler extends Handler {
-    public static boolean ENABLED = Configuration.FEATURE_MONITOR_COMMAND_EXECUTIONS;
+    public static boolean isEnabled()
+    {
+        if (!Handler.isEnabled()) return false;
+        return Configuration.FEATURE_MONITOR_COMMAND_EXECUTIONS;
+    }
 
     public static void handle(String playerName, String command)
     {

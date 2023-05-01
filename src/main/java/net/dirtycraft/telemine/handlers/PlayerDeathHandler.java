@@ -6,7 +6,11 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import java.util.regex.Pattern;
 
 public class PlayerDeathHandler extends Handler {
-    public static boolean ENABLED = Configuration.FEATURE_PLAYER_DEATH_MESSAGES;
+    public static boolean isEnabled()
+    {
+        if (!Handler.isEnabled()) return false;
+        return Configuration.FEATURE_PLAYER_DEATH_MESSAGES;
+    }
 
     public static void handle(PlayerDeathEvent event)
     {

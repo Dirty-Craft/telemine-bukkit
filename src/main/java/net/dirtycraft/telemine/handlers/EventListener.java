@@ -16,7 +16,7 @@ public class EventListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void playerJoinHandler(PlayerJoinEvent event)
     {
-        if (PlayerJoinHandler.ENABLED) {
+        if (PlayerJoinHandler.isEnabled()) {
             PlayerJoinHandler.handle(event);
         }
     }
@@ -24,7 +24,7 @@ public class EventListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void playerLeaveHandler(PlayerQuitEvent event)
     {
-        if (PlayerLeaveHandler.ENABLED) {
+        if (PlayerLeaveHandler.isEnabled()) {
             PlayerLeaveHandler.handle(event);
         }
     }
@@ -32,7 +32,7 @@ public class EventListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void playerDeathHandler(PlayerDeathEvent event)
     {
-        if (PlayerDeathHandler.ENABLED) {
+        if (PlayerDeathHandler.isEnabled()) {
             PlayerDeathHandler.handle(event);
         }
     }
@@ -40,7 +40,7 @@ public class EventListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void serverCommandHandler(ServerCommandEvent event)
     {
-        if (CommandExecuteHandler.ENABLED) {
+        if (CommandExecuteHandler.isEnabled()) {
             CommandExecuteHandler.handle(event.getSender().getName(), event.getCommand());
         }
     }
@@ -48,7 +48,7 @@ public class EventListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void playerCommandHandler(PlayerCommandPreprocessEvent event)
     {
-        if (CommandExecuteHandler.ENABLED) {
+        if (CommandExecuteHandler.isEnabled()) {
             if (event.getMessage().startsWith("/")) {
                 CommandExecuteHandler.handle(event.getPlayer().getName(), event.getMessage());
             }
@@ -58,7 +58,7 @@ public class EventListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void villagerDeathHandler(EntityDeathEvent event)
     {
-        if (VillagerDeathHandler.ENABLED) {
+        if (VillagerDeathHandler.isEnabled()) {
             if (event.getEntityType().equals(EntityType.VILLAGER)) {
                 VillagerDeathHandler.handle(event);
             }
@@ -68,7 +68,7 @@ public class EventListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void advancementMadeHandler(PlayerAdvancementDoneEvent event)
     {
-        if (AdvancementMadeHandler.ENABLED) {
+        if (AdvancementMadeHandler.isEnabled()) {
             AdvancementMadeHandler.handle(event);
         }
     }
@@ -76,7 +76,7 @@ public class EventListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void serverStartedHandler(ServerLoadEvent event)
     {
-        if (ServerStartedHandler.ENABLED) {
+        if (ServerStartedHandler.isEnabled()) {
             ServerStartedHandler.handle();
         }
     }

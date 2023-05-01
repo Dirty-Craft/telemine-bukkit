@@ -17,6 +17,12 @@ public class Handler {
     public static final Api API = Telemine.API;
     public static JSONObject translationData = new JSONObject();
 
+    public static boolean isEnabled()
+    {
+        if (!API.isValid()) return false;
+        return Configuration.ENABLED;
+    }
+
     public static String getOnlinePlayersList()
     {
         return getOnlinePlayersList(false, "");

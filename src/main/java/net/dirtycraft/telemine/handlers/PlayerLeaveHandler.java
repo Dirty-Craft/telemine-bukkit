@@ -4,7 +4,11 @@ import net.dirtycraft.telemine.Configuration;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 public class PlayerLeaveHandler extends Handler {
-    public static boolean ENABLED = Configuration.FEATURE_PLAYER_LEAVE_MESSAGES;
+    public static boolean isEnabled()
+    {
+        if (!Handler.isEnabled()) return false;
+        return Configuration.FEATURE_PLAYER_LEAVE_MESSAGES;
+    }
 
     public static void handle(PlayerQuitEvent event)
     {
