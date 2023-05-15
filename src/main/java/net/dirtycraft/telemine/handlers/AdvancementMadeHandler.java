@@ -14,7 +14,11 @@ public class AdvancementMadeHandler extends Handler {
         }
 
         String playerName = event.getPlayer().getName();
-        String advancementName = translateText("advancements." + event.getAdvancement().getKey().getKey().replaceAll("/", ".") + ".title");
+        String theKey = "advancements." + event.getAdvancement().getKey().getKey().replaceAll("/", ".") + ".title";
+        String advancementName = translateText(theKey);
+        if (advancementName == theKey) {
+            return;
+        }
 
         String messageToSend = Configuration.LANG_ADVANCEMENT_MADE_MESSAGE.replaceAll("\\{player_name\\}", playerName).replaceAll("\\{advancement_name\\}", advancementName);
         Telemine.LOGGER.info("Sending advancement made message");
