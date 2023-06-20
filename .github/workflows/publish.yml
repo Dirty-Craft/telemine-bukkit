@@ -16,7 +16,6 @@ jobs:
       - name: Build the JAR
         run: |
           ./gradlew build
-          mv build/libs/*.jar build/libs/Telemine-${GITHUB_REF#refs/*/}.jar
           echo "jarfile=$(ls build/libs/*.jar)" >> $GITHUB_ENV
       - name: Upload the mod to the CurseForge
         uses: itsmeow/curseforge-upload@v3
